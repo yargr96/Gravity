@@ -25,31 +25,27 @@ const useApp = () => {
 
     const update = () => {
         particles.forEach((particle) => {
-            const [mouseX, mouseY] = mouse;
-
             const angle = getAngle([
-                mouseX - particle.position[0],
-                mouseY - particle.position[1]
+                mouse[0] - particle.position[0],
+                mouse[1] - particle.position[1]
             ]);
 
             particle.acceleration = getVectorFromAngle(angle, 1);
             particle.velocity = [particle.velocity[0] * 0.99, particle.velocity[1] * 0.99];
             moveParticle(particle);
 
+            const halfSize = size / 2;
+
             if (
-                (particle.position[0] + size / 2 >= canvas.width &&
-                    particle.velocity[0] > 0) ||
-                (particle.position[0] - size / 2 < 0 &&
-                    particle.velocity[0] < 0)
+                (particle.position[0] + halfSize >= canvas.width && particle.velocity[0] > 0)
+                || (particle.position[0] - halfSize < 0 && particle.velocity[0] < 0)
             ) {
                 particle.velocity[0] *= -1;
             }
+
             if (
-                (particle.position[1] + size / 2 >=
-                    canvas.height &&
-                    particle.velocity[1] > 0) ||
-                (particle.position[1] - size / 2 < 0 &&
-                    particle.velocity[1] < 0)
+                (particle.position[1] + halfSize >= canvas.height && particle.velocity[1] > 0) ||
+                (particle.position[1] - halfSize < 0 && particle.velocity[1] < 0)
             ) {
                 particle.velocity[1] *= -1;
             }

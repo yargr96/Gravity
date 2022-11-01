@@ -2,14 +2,24 @@ import useCanvas from './useCanvas';
 import { iParticle, moveParticle } from '../modules/particle';
 import { iVector, getAngle, getVectorFromAngle } from '../modules/vector';
 
-const useApp = () => {
+interface iAppOptions {
+    size?: number;
+    speed?: number;
+    color?: string;
+    backgroundColor?: string;
+}
+
+const useApp = ({
+    size = 5,
+    speed = 1,
+    color = '#fff',
+    backgroundColor = '#000',
+}: iAppOptions = {}) => {
     const { canvas, context } = useCanvas();
 
     const particles: iParticle[] = [];
 
     let mouse: iVector = [canvas.width / 2, canvas.height / 2];
-
-    const size = 5;
 
     const addParticle = (position: iVector) => {
         particles.push({
@@ -20,7 +30,8 @@ const useApp = () => {
     }
 
     const clear = () => {
-        context.clearRect(0, 0, canvas.width, canvas.height);
+        context.fillStyle = backgroundColor;
+        context.fillRect(0, 0, canvas.width, canvas.height);
     };
 
     const update = () => {
@@ -30,7 +41,7 @@ const useApp = () => {
                 mouse[1] - particle.position[1]
             ]);
 
-            particle.acceleration = getVectorFromAngle(angle, 1);
+            particle.acceleration = getVectorFromAngle(angle, speed);
             particle.velocity = [particle.velocity[0] * 0.99, particle.velocity[1] * 0.99];
             moveParticle(particle);
 
@@ -53,7 +64,7 @@ const useApp = () => {
     };
 
     const draw = () => {
-        context.fillStyle = '#fff';
+        context.fillStyle = color;
 
         particles.forEach((particle) => {
             context.beginPath();

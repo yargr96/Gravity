@@ -1,6 +1,6 @@
 import useCanvas from './useCanvas';
-import {iParticle, moveParticle} from '../modules/particle';
-import {iVector, getAngle, getVectorFromAngle} from '../modules/vector';
+import { iParticle, moveParticle } from '../modules/particle';
+import { iVector, getAngle, getVectorFromAngle } from '../modules/vector';
 
 const useApp = () => {
     const { canvas, context } = useCanvas();
@@ -86,6 +86,16 @@ const useApp = () => {
                 canvas.height * Math.random(),
             ])
         }
+
+        canvas.addEventListener('click', () => {
+            for (let i = 0; i < 10; i++) {
+                addParticle(mouse);
+            }
+        })
+
+        canvas.addEventListener('mousemove', ({ offsetX, offsetY }) => {
+            mouse = [offsetX, offsetY];
+        })
 
         loop();
     };

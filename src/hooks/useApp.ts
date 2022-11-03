@@ -1,6 +1,6 @@
 import useCanvas from './useCanvas';
 import { iParticle, moveParticle } from '../modules/particle';
-import { iVector, getAngle, getVectorFromAngle } from '../modules/vector';
+import { iVector, getAngle, getVectorFromAngle } from '@/modules/vector';
 
 interface iAppOptions {
     size?: number;

@@ -1,4 +1,4 @@
-import { iVector, addVector } from './vector';
+import { iVector, addVector } from '@/modules/vector';
 
 export interface iParticle {
     position: iVector;

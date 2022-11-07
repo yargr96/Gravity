@@ -1,6 +1,6 @@
 import useCanvas from './useCanvas';
-import { iParticle, moveParticle } from '../modules/particle';
-import { iVector, getAngle, getVectorFromAngle } from '@/modules/vector';
+import { IParticle, moveParticle } from '@/modules/particle';
+import { IVector, getAngle, getVectorFromAngle } from '@/modules/vector';
 
 interface iAppOptions {
     size?: number;
@@ -17,11 +17,11 @@ const useApp = ({
 }: iAppOptions = {}) => {
     const { canvas, context } = useCanvas();
 
-    const particles: iParticle[] = [];
+    const particles: IParticle[] = [];
 
-    let mouse: iVector = [canvas.width / 2, canvas.height / 2];
+    let mouse: IVector = [canvas.width / 2, canvas.height / 2];
 
-    const addParticle = (position: iVector) => {
+    const addParticle = (position: IVector) => {
         particles.push({
             position,
             velocity: [Math.random() * 10 - 5, Math.random() * 10 - 5],

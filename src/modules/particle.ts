@@ -9,4 +9,4 @@ export interface IParticle {
 export const moveParticle = (particle: IParticle): void => {
     particle.position = addVector(particle.position, particle.velocity);
     particle.velocity = addVector(particle.velocity, particle.acceleration);
-}
+};

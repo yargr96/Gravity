@@ -27,7 +27,7 @@ const useApp = ({
             velocity: [Math.random() * 10 - 5, Math.random() * 10 - 5],
             acceleration: [0, 0],
         });
-    }
+    };
 
     const clear = () => {
         context.fillStyle = backgroundColor;
@@ -60,7 +60,7 @@ const useApp = ({
             ) {
                 particle.velocity[1] *= -1;
             }
-        })
+        });
     };
 
     const draw = () => {
@@ -76,7 +76,7 @@ const useApp = ({
                 Math.PI * 2
             );
             context.fill();
-        })
+        });
     };
 
     const loop = () => {
@@ -91,25 +91,25 @@ const useApp = ({
             addParticle([
                 canvas.width * Math.random(),
                 canvas.height * Math.random(),
-            ])
+            ]);
         }
 
         canvas.addEventListener('click', () => {
             for (let i = 0; i < 10; i++) {
                 addParticle(mouse);
             }
-        })
+        });
 
         canvas.addEventListener('mousemove', ({ offsetX, offsetY }) => {
             mouse = [offsetX, offsetY];
-        })
+        });
 
         loop();
     };
 
     return {
         init,
-    }
+    };
 };
 
 export default useApp;

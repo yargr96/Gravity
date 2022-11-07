@@ -1,5 +1,6 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { resolve } = require('path');
+const ESLintPlugin = require('eslint-webpack-plugin');
 
 module.exports = {
     mode: 'development',
@@ -15,7 +16,7 @@ module.exports = {
             },
             {
                 test: /\.css$/i,
-                use: ["style-loader", "css-loader"],
+                use: ['style-loader', 'css-loader'],
             },
         ]
     },
@@ -30,5 +31,8 @@ module.exports = {
 
     plugins: [
         new HtmlWebpackPlugin(),
+        new ESLintPlugin({
+            extensions: ['.ts', '.tsx', '.js'],
+        }),
     ],
 };
